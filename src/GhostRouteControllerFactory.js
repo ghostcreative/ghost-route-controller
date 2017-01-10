@@ -3,24 +3,73 @@
 const GhostRouteController = require('./GhostRouteController');
 
 /**
- * @name GhostRouteControllerConfig
- * @type {Object}
- * @property {String} modelName
- * @property {String} modelScope
+ * @class GhostRouteControllerFactory
  */
-
 class GhostRouteControllerFactory {
 
   /**
-   * @class GhostRouteControllerFactory
+   * @method GhostRouteControllerFactory.get
    *
-   * @param {GhostRouteControllerConfig} config
-   * @param {Sequelize} db
-   * @returns {GhostRouteController}
+   * @param {Express.Request} req
+   * @param {Express.Response} res
+   * @param {Function} next
+   * @returns {GhostRouteController.get}
    */
-  constructor (config, db) {
-    const service = db[config.modelName].scope(config.modelScope);
-    return new GhostRouteController(service);
+  static get (req, res, next) {
+    if (!this.service) throw new Error('GhostRouteControllerFactory.get failed - no service set.');
+    else return new GhostRouteController(this.service).get(req, res, next);
+  }
+
+  /**
+   * @method GhostRouteControllerFactory.fetch
+   *
+   * @param {Express.Request} req
+   * @param {Express.Response} res
+   * @param {Function} next
+   * @returns {GhostRouteController.fetch}
+   */
+  static fetch (req, res, next) {
+    if (!this.service) throw new Error('GhostRouteControllerFactory.fetch failed - no service set.');
+    else return new GhostRouteController(this.service).fetch(req, res, next);
+  }
+
+  /**
+   * @method GhostRouteControllerFactory.create
+   *
+   * @param {Express.Request} req
+   * @param {Express.Response} res
+   * @param {Function} next
+   * @returns {GhostRouteController.create}
+   */
+  static create (req, res, next) {
+    if (!this.service) throw new Error('GhostRouteControllerFactory.create failed - no service set.');
+    else return new GhostRouteController(this.service).create(req, res, next);
+  }
+
+  /**
+   * @method GhostRouteControllerFactory.update
+   *
+   * @param {Express.Request} req
+   * @param {Express.Response} res
+   * @param {Function} next
+   * @returns {GhostRouteController.update}
+   */
+  static update (req, res, next) {
+    if (!this.service) throw new Error('GhostRouteControllerFactory.update failed - no service set.');
+    else return new GhostRouteController(this.service).update(req, res, next);
+  }
+
+  /**
+   * @method GhostRouteControllerFactory.delete
+   *
+   * @param {Express.Request} req
+   * @param {Express.Response} res
+   * @param {Function} next
+   * @returns {GhostRouteController.delete}
+   */
+  static delete (req, res, next) {
+    if (!this.service) throw new Error('GhostRouteControllerFactory.delete failed - no service set.');
+    else return new GhostRouteController(this.service).delete(req, res, next);
   }
 
 }
