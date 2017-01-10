@@ -1,0 +1,19 @@
+{
+  "name": "ghost-route-controller",
+  "version": "1.0.0",
+  "description": "A generic route controller to handle basic permissioned requests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ghost Creative",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.4",
+    "typescript": "^2.1.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
