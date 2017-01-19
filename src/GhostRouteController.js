@@ -34,6 +34,7 @@ class GhostRouteController {
    * @param {Function} next
    */
   fetch (req, res, next) {
+    // TODO - add offset/limiting by default
     this._service.findAll()
     .then(results => res.ok(() => res.json({ docs: _.map(results, 'dataValues') })))
     .catch(err => next(new res.InternalServerError(err)))
