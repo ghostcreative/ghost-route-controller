@@ -22,8 +22,11 @@ class GhostRouteController {
    */
   get (req, res, next) {
     this._service.findById(req.params.id)
-    .then(result => res.ok(() => res.json({ doc: result })))
-    .catch(err => next(new res.InternalServerError(err)))
+    .then(result => {
+      if (!result) res.boom.notFound();
+      else res.ok(() => res.json({ doc: result }))
+    })
+    .catch(err => next(new res.boom.badImplementation(err)))
   }
 
   /**
@@ -37,7 +40,7 @@ class GhostRouteController {
     // TODO - add offset/limiting by default
     this._service.findAll()
     .then(results => res.ok(() => res.json({ docs: _.map(results, 'dataValues') })))
-    .catch(err => next(new res.InternalServerError(err)))
+    .catch(err => next(new res.boom.badImplementation(err)))
   }
 
   /**
@@ -50,7 +53,7 @@ class GhostRouteController {
   create (req, res, next) {
     this._service.create(req.body)
     .then(result => res.ok(() => res.json({ doc: result })))
-    .catch(err => next(new res.InternalServerError(err)))
+    .catch(err => next(new res.boom.badImplementation(err)))
   }
 
   /**
@@ -61,10 +64,16 @@ class GhostRouteController {
    * @param {Function} next
    */
   update (req, res, next) {
-    this._service.update(req.body.doc, { where: { id: req.body.doc.id } })
-    .then(result => Db.address.findById(req.body.doc.id))
-    .then(result => res.ok(() => res.json({ doc: result })))
-    .catch(err => next(new res.InternalServerError(err)))
+    this._service.findById(req.body.doc.id)
+    .then(result => {
+      if (!result) res.boom.notFound();
+      else {
+        this._service.update(req.body.doc, { where: { id: req.body.doc.id } })
+        .then(result => Db.address.findById(req.body.doc.id))
+        .then(result => res.ok(() => res.json({ doc: result })))
+      }
+    })
+    .catch(err => next(new res.boom.badImplementation(err)))
   }
 
   /**
@@ -75,9 +84,17 @@ class GhostRouteController {
    * @param {Function} next
    */
   delete (req, res, next) {
-    this._service.destroy({ where: { id: req.params.id } })
-    .then(result => res.ok())
-    .catch(err => next(new res.InternalServerError(err)))
+    this._service.findById(req.params.id)
+    .then(result => {
+      if (!result) res.boom.notFound();
+      else {
+        this._service.destroy({ where: { id: req.params.id } })
+        .then(result => res.ok())
+        .catch(err => next(new res.boom.badImplementation(err)))
+      }
+    })
+    .catch(err => next(new res.boom.badImplementation(err)))
+
   }
 
 }
