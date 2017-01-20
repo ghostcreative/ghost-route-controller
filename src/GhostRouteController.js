@@ -14,7 +14,7 @@ class GhostRouteController {
   }
 
   /**
-   * @method GhostRouteController#get
+   * @method GhostRouteController.get
    *
    * @param {Express.Request} req
    * @param {Express.Response} res
@@ -26,11 +26,11 @@ class GhostRouteController {
       if (!result) res.boom.notFound();
       else res.ok(() => res.json({ doc: result }))
     })
-    .catch(err => next(new res.boom.badImplementation(err)))
+    .catch(err => res.boom.badImplementation(err))
   }
 
   /**
-   * @method GhostRouteController#fetch
+   * @method GhostRouteController.fetch
    *
    * @param {Express.Request} req
    * @param {Express.Response} res
@@ -40,11 +40,11 @@ class GhostRouteController {
     // TODO - add offset/limiting by default
     this._service.findAll()
     .then(results => res.ok(() => res.json({ docs: _.map(results, 'dataValues') })))
-    .catch(err => next(new res.boom.badImplementation(err)))
+    .catch(err => res.boom.badImplementation(err))
   }
 
   /**
-   * @method GhostRouteController#create
+   * @method GhostRouteController.create
    *
    * @param {Request} req
    * @param {Response} res
@@ -53,11 +53,11 @@ class GhostRouteController {
   create (req, res, next) {
     this._service.create(req.body)
     .then(result => res.ok(() => res.json({ doc: result })))
-    .catch(err => next(new res.boom.badImplementation(err)))
+    .catch(err => res.boom.badImplementation(err))
   }
 
   /**
-   * @method GhostRouteController#update
+   * @method GhostRouteController.update
    *
    * @param {Express.Request} req
    * @param {Express.Response} res
@@ -73,11 +73,11 @@ class GhostRouteController {
         .then(result => res.ok(() => res.json({ doc: result })))
       }
     })
-    .catch(err => next(new res.boom.badImplementation(err)))
+    .catch(err => res.boom.badImplementation(err))
   }
 
   /**
-   * @method GhostRouteController#delete
+   * @method GhostRouteController.delete
    *
    * @param {Express.Request} req
    * @param {Express.Response} res
@@ -90,10 +90,10 @@ class GhostRouteController {
       else {
         this._service.destroy({ where: { id: req.params.id } })
         .then(result => res.ok())
-        .catch(err => next(new res.boom.badImplementation(err)))
+        .catch(err => res.boom.badImplementation(err))
       }
     })
-    .catch(err => next(new res.boom.badImplementation(err)))
+    .catch(err => res.boom.badImplementation(err))
 
   }
 
