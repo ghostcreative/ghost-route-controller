@@ -69,7 +69,7 @@ class GhostRouteController {
       if (!result) res.boom.notFound();
       else {
         this._service.update(req.body.doc, { where: { id: req.body.doc.id } })
-        .then(result => this._service.address.findById(req.body.doc.id))
+        .then(result => this._service.findById(req.body.doc.id))
         .then(result => res.ok(() => res.json({ doc: result })))
       }
     })

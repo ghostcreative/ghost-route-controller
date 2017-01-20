@@ -60,8 +60,8 @@
       <file leaf-file-name="GhostRouteController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GhostRouteController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+            <state relative-caret-position="184">
+              <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="40" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -151,7 +151,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -187,6 +186,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -274,12 +274,13 @@
       <workItem from="1484792568339" duration="48000" />
       <workItem from="1484792632665" duration="568000" />
       <workItem from="1484889620914" duration="68000" />
-      <workItem from="1484937956983" duration="11000" />
+      <workItem from="1484937956983" duration="43000" />
+      <workItem from="1484938030943" duration="17000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7133000" />
+    <option name="totallyTimeSpent" value="7182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="22" width="1436" height="878" extended-state="6" />
@@ -673,8 +674,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GhostRouteController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state relative-caret-position="184">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="40" selection-end-column="27" />
           <folding />
         </state>
       </provider>
